@@ -2,79 +2,93 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <link rel="stylesheet" href="/static/css/bulma.min.css">
-  <style>
-    .container {
-      width: 100%;
-      padding: 10px;
-      display: flex;
-      flex-direction: row;
-    }
+  <title>Color Pallete</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
-    .my-box {
-      width: 50px;
-      height: 50px;
-      margin: 0 10px;
-      text-align: center;
-      line-height: 130px;
-      padding: 0 !important;
-    }
-  </style>
-  <script src="/static/js/jquery.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+  <link rel="stylesheet" href="/static/css/style.css">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/js/all.min.js"></script>
 </head>
 
 <body>
+  <section id="pageOne" style="display: none;">
+    <svg class="load-top" height="100" width="100">
+      <circle cx="50" cy="50" r="40" stroke-width="3" stroke="white" fill="black" />
+    </svg>
+    <div class="container">
+      <nav>
+        <p>Color Pallete Generator</i></p>
+        <p>
+          <i class="fa-brands fa-github"></i>
+          <span><a href="https://github.com/zaidananwar13">Fork me on git</a></span>
+        </p>
+      </nav>
 
-  <input type="file" id="img" name="img">
-  <input type="text" id="colors" name="colors">
-  <button onclick="generatePallete()">Post</button>
+      <h1>Hello.</h1>
 
-  
-  <div id="container" class="container">
-    <span class="box my-box" style="background-color: lightblue">bebe</span>
-    <span class="box my-box" style="background-color: lightblue">bebe</span>
-    <span class="box my-box" style="background-color: lightblue">bebe</span>
-  </div>
+      <div class="input-field">
+        <div class="quantity">
+          <div id="form-wrapper">
+            <p style="font-size: 1.4rem; margin: 20px;">Pick your number</p>
+            <form>
+              <div id="debt-amount-slider">
+                <input type="radio" name="colors" id="1" value="2" required>
+                <label for="1" data-debt-amount="2 Colors"></label>
+                <input type="radio" name="colors" id="2" value="3" required>
+                <label for="2" data-debt-amount="3 Colors"></label>
+                <input type="radio" name="colors" id="3" value="4" required>
+                <label for="3" data-debt-amount="4 Colors"></label>
+                <input type="radio" name="colors" id="4" value="5" required>
+                <label for="4" data-debt-amount="5 Colors"></label>
+                <input type="radio" name="colors" id="5" value="6" required>
+                <label for="5" data-debt-amount="6 Colors"></label>
+                <div id="debt-amount-pos"></div>
+              </div>
+            </form>
+          </div>
+        </div>
 
-  <script>
-    let generatePallete = () => {
-      $("#container").empty();
-      let file = $("#img").prop("files")[0];
-      let colors = $("#colors").val();
-      let form_data = new FormData();
+        <button class="btn" onclick="selectFile()">
+          Pick an Image
+        </button>
+      </div>
 
-      form_data.append("img", file);
-      form_data.append("colors", colors);
+    </div>
+    <svg class="load-bot" height="100" width="100">
+      <circle cx="50" cy="50" r="40" stroke-width="3" stroke="white" fill="white" />
+    </svg>
 
-      $.ajax({
-        type: "POST",
-        url: "/generate-pallete",
-        data: form_data,
-        contentType: false,
-        processData: false,
-        success: function (response) {
-          let colors = response["colors"]
-          $(".container").css('background-color', colors[0]);
+    <input type="file" id="imageInput" style="display: none;" onchange="colorGenerate()">
+  </section>
 
-          for (let i = 0; i < colors.length; i++) {
-            let template = `
-              <span class="box my-box" style="background-color: ${colors[i]}">${colors[i]}</span>
-            `;
+  <section id="pageTwo">
+    <div class="container">
+      <h1>Welcome.</h1>
+    </div>
+    </div>
+  </section>
 
-            $("#container").append(template)
+  <section id="pageThree" style="display: none;">
+    <svg class="load-top" height="100" width="100">
+      <circle cx="50" cy="50" r="40" stroke-width="3" stroke="black" fill="white" />
+    </svg>  
+    <div class="container">
+      <h1>Loading
+        <div id="dots" class="dots"><span class="dot z"></span><span class="dot f"></span><span
+            class="dot s"></span><span class="dot t"><span class="dot l"></span></span></div>
+      </h1>
+    </div>
+    <svg class="load-bot" height="100" width="100">
+      <circle cx="50" cy="50" r="40" stroke-width="3" stroke="black" fill="black" />
+    </svg>
+  </section>
 
-          }
 
-          setAfter();
-        },
-      });
-    }
-  </script>
+
+  <script src="/static/js/script.js"></script>
 </body>
 
 </html>

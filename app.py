@@ -30,14 +30,19 @@ def generatePallete():
   api = {
     'code': 200,
     'message': f'Success generate {n_colors} colors from image {filename}.',
-    'colors': output
+    'colors': output,
+    'image': save_to,
   }
 
   return jsonify(api)
 
-@app.route('/test')
+@app.route('/result')
 def test():
-  return render_template("real.html")
+  return render_template("result.html")
+
+@app.route('/test')
+def tes2t():
+  return render_template("backup.html")
 
 if __name__ == "__main__":
   app.run('0.0.0.0', port=6969, debug=True)

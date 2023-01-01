@@ -23,7 +23,7 @@ def get_points(image_path):
   return points
 
 def rgb_to_hex(rgb):
-  return '#%s' % ''.join(('%02x' % p for p in rgb))
+  return '%s' % ''.join(('%02x' % p for p in rgb))
 
 def get_colors(filename, n_colors=3):
   points = get_points(filename)
